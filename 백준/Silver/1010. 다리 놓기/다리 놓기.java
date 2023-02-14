@@ -9,7 +9,7 @@ public class Main {
 		for (int test_case = 1; test_case <= T; test_case++) {
 			int N = sc.nextInt();
 			int M = sc.nextInt();
-			double answer = 1;
+			long answer = 1;
 
 			if (M / 2 < N) {
 				N = M - N;
@@ -22,7 +22,7 @@ public class Main {
 			}
 			
 
-			System.out.println((int) answer);
+			System.out.println(answer);
 		}
 	}
 }
