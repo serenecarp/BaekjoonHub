@@ -1,4 +1,4 @@
-package prob1010;
+package prob001010;
 
 import java.util.Scanner;
 
@@ -11,12 +11,18 @@ public class Main {
 			int N = sc.nextInt();
 			int M = sc.nextInt();
 			long answer = 1;
+
+			if (M / 2 < N) {
+				N = M - N;
+			}
 			for (int i = M; i > M - N; i--) {
 				answer *= i;
 			}
 			for (int i = 1; i <= N; i++) {
 				answer /= i;
 			}
+			
+
 			System.out.println(answer);
 		}
 	}
