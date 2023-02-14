@@ -1,14 +1,10 @@
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
-	public static void main(String[] args) throws IOException {
-//		// scanner 런타임에러뜸
+	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		System.out.println(recursion(sc.nextInt()));
-//		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-//		System.out.println(recursion(Integer.parseInt((br.readLine()))));
 	}
 
 	// 재귀함수
