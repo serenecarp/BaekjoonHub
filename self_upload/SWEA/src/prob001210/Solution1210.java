@@ -23,7 +23,7 @@ class Solution1210 {
 
 			// 사다리 입력
 			int size = 100;
-			int[][] ladder = new int[size+1][size];
+			int[][] ladder = new int[size + 1][size];
 			// 핵심? idea
 			// 가로줄까지 1을 일일이 더듬어가며 이동하지 않고,
 			// 좌우에 1이 발견되면
@@ -67,7 +67,7 @@ class Solution1210 {
 						continue; // 사실 필요없음
 					}
 				}
-				
+
 			}
 
 			// 출력
