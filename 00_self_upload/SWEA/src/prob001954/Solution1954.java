@@ -34,18 +34,9 @@ class Solution1954 {
 				// 현재 방향대로 전진
 				i += basis[k][0];
 				j += basis[k][1];
-				// 전진했는데 배열 범위를 넘었다면
+				// 전진했는데 배열 범위를 넘었거나 이미 갔던 곳이라면
 				// 후진했다가 방향전환
-				if (i >= N || i < 0 || j >= N || j < 0) {
-					i -= basis[k][0];
-					j -= basis[k][1];
-					k = ++k % 4;
-					i += basis[k][0];
-					j += basis[k][1];
-				}
-				// 전진했는데 이미 갔던 곳이라면
-				// 후진했다가 방향젼환
-				else if (snail[i][j] != 0) {
+				if (i >= N || i < 0 || j >= N || j < 0 || snail[i][j] != 0) {
 					i -= basis[k][0];
 					j -= basis[k][1];
 					k = ++k % 4;
