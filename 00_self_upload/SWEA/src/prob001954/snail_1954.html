@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1954 달팽이숫자</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-size: 1em;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      margin: 10em;
+    }
+
+    .row {
+      display: flex;
+      justify-content: center;
+
+    }
+
+    .row div {
+      border: 2px solid #183059;
+      border-collapse: collapse;
+      width: 6em;
+      height: 6em;
+      text-align: center;
+      line-height: 6em;
+    }
+
+    div.no1,
+    div.no2 {
+      border: 2px solid lightgray;
+    }
+
+    .row div.no {
+      border: 3px solid transparent;
+    }
+
+    div {
+      color: transparent;
+    }
+
+    div.column:hover {
+      background-color: #276FBF;
+      cursor: pointer;
+    }
+
+
+    div.row>div.nono:hover {
+      background-color: #276FBF;
+      cursor: pointer;
+    }
+
+
+
+    div[color='blue'] {
+      background-color: #183059;
+      border-color: whitesmoke;
+      color: whitesmoke;
+    }
+
+    div[color='red'] {
+      background-color: #f03a47;
+      color: whitesmoke;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="row">
+    <div class="no">!!</div>
+    <div class="column">1</div>
+    <div class="column">2</div>
+    <div class="column">3</div>
+    <div class="column">4</div>
+    <div class="column">5</div>
+    <div class="nono">!!</div>
+  </div>
+  <div class="row">
+    <div class="no">!!</div>
+    <div class="column">16</div>
+    <div class="column">17</div>
+    <div class="column">18</div>
+    <div class="column">19</div>
+    <div class="column">6</div>
+    <div class="no">!!</div>
+  </div>
+  <div class="row">
+    <div class="no">!!</div>
+    <div class="column">15</div>
+    <div class="column">24</div>
+    <div class="column">25</div>
+    <div class="column">20</div>
+    <div class="column">7</div>
+    <div class="no">!!</div>
+  </div>
+  <div class="row">
+    <div class="no">!!</div>
+    <div class="column">14</div>
+    <div class="column">23</div>
+    <div class="column">22</div>
+    <div class="column">21</div>
+    <div class="column">8</div>
+    <div class="no">!!</div>
+  </div>
+  <div class="row">
+    <div class="nono">!!</div>
+    <div class="column">13</div>
+    <div class="column">12</div>
+    <div class="column">11</div>
+    <div class="column">10</div>
+    <div class="column">9</div>
+    <div class="no">!!</div>
+  </div>
+  <div class="row">
+    <div class="no">!!</div>
+    <div class="no">!!</div>
+    <div class="no">!!</div>
+    <div class="no">!!</div>
+    <div class="no">!!</div>
+    <div class="nono">!!</div>
+    <div class="no">!!</div>
+  </div>
+
+
+</body>
+<script>
+  let colors = ['blue', 'red', 'whitesmoke']
+  let n = 0;
+  let boxes = document.querySelectorAll('div.column');
+  boxes.forEach((box) => {
+    box.addEventListener('click', function () {
+      // box.setAttribute('number', `${n}`);
+      // let num = box.getAttribute('number');
+      // box.setAttribute('color', `${colors[box.getAttribute('number')]}`);
+      box.setAttribute('color', 'blue')
+
+    })
+  });
+
+  let boxes2 = document.querySelectorAll('.nono');
+  boxes2.forEach((box) => {
+    box.addEventListener('click', function () {
+      box.setAttribute('color', 'red')
+    })
+  });
+
+
+</script>
+
+</html>

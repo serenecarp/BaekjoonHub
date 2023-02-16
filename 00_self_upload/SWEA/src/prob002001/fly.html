@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2001 파리 퇴치</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-size: 1em;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      margin: 10em;
+    }
+
+    .row {
+      display: flex;
+      justify-content: center;
+
+    }
+
+    .row div {
+      border: 2px solid #183059;
+      border-collapse: collapse;
+      width: 6em;
+      height: 6em;
+      text-align: center;
+      line-height: 6em;
+    }
+
+    div.no1,
+    div.no2 {
+      border: 2px solid lightgray;
+    }
+
+    .row div.no {
+      border: 3px solid transparent;
+    }
+
+    div {
+      color: transparent;
+    }
+
+    div#a1:hover>div.sq {
+      background-color: #276FBF;
+      cursor: pointer;
+    }
+    div#a2:hover>div.sq {
+      background-color: #276FBF;
+      cursor: pointer;
+    }
+    div#a3:hover>div.sq {
+      background-color: #276FBF;
+      cursor: pointer;
+    }
+    div#a4:hover>div.sq {
+      background-color: #276FBF;
+      cursor: pointer;
+    }
+    div#a5:hover>div.sq {
+      background-color: #276FBF;
+      cursor: pointer;
+    }
+    div#a6:hover>div.sq {
+      background-color: #276FBF;
+      cursor: pointer;
+    }
+    div#a7:hover>div.sq {
+      background-color: #276FBF;
+      cursor: pointer;
+    }
+    div#a8:hover>div.sq {
+      background-color: #276FBF;
+      cursor: pointer;
+    }
+    div#a9:hover>div.sq {
+      background-color: #276FBF;
+      cursor: pointer;
+    }
+
+    div#a1 {
+      z-index: 10;
+    }
+    div#a2 {
+      z-index: 10;
+    }
+    div#a3 {
+      z-index: 10;
+    }
+    div#a4 {
+      z-index: 10;
+    }
+    div#a5 {
+      z-index: 10;
+    }
+    div#a6 {
+      z-index: 10;
+    }
+    div#a7 {
+      z-index: 10;
+    }
+    div#a8 {
+      z-index: 10;
+    }
+    div#a9 {
+      z-index: 10;
+    }
+
+
+
+
+
+
+    div[color='blue'] {
+      background-color: #183059;
+      border-color: whitesmoke;
+      color: whitesmoke;
+    }
+
+    div[color='red'] {
+      background-color: #f03a47;
+      color: whitesmoke;
+    }
+
+    .sq {
+      background-color: transparent;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="row">
+    <div id="a1" class="c1">
+      <div class="sq" style="position:absolute; right: 31.5em; height: 18em; width: 18em;"></div>
+    </div>
+
+    <div id="a2" class="c1">
+      <div class="sq" style="position:absolute; height: 18em; width: 18em;"></div>
+    </div>
+
+    <div id="a3" class="c1">
+      <div class="sq" style="position:absolute; height: 18em; width: 18em;"></div>
+
+    </div>
+    <div class="column"></div>
+    <div class="column"></div>
+  </div>
+  <div class="row">
+    <div id="a4" class="c1">
+      <div class="sq" style="position:absolute; right: 31.5em; height: 18em; width: 18em;"></div>
+
+    </div>
+    <div id="a5" class="c1">
+      <div class="sq" style="position:absolute; height: 18em; width: 18em;"></div>
+
+    </div>
+    <div id="a6" class="c1">
+      <div class="sq" style="position:absolute; height: 18em; width: 18em;"></div>
+
+    </div>
+    <div class="column"></div>
+    <div class="column"></div>
+  </div>
+  <div class="row">
+    <div id="a7" class="c1">
+            <div class="sq" style="position:absolute; right: 31.5em; height: 18em; width: 18em;"></div>
+
+    </div>
+    <div id="a8" class="c1">
+      <div class="sq" style="position:absolute; height: 18em; width: 18em;"></div>
+
+    </div>
+    <div id="a9" class="c1">
+      <div class="sq" style="position:absolute; height: 18em; width: 18em;"></div>
+
+    </div>
+    <div class="column"></div>
+    <div class="column"></div>
+  </div>
+  <div class="row">
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+  </div>
+  <div class="row">
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+  </div>
+
+
+
+</body>
+<script>
+  // let colors = ['blue', 'red', 'whitesmoke']
+  // let n = 0;
+  // let boxes = document.querySelectorAll('div.column');
+  // boxes.forEach((box) => {
+  //   box.addEventListener('click', function () {
+  //     // box.setAttribute('number', `${n}`);
+  //     // let num = box.getAttribute('number');
+  //     // box.setAttribute('color', `${colors[box.getAttribute('number')]}`);
+  //     box.setAttribute('color', 'blue')
+
+  //   })
+  // });
+
+  // let boxes2 = document.querySelectorAll('.nono');
+  // boxes2.forEach((box) => {
+  //   box.addEventListener('click', function () {
+  //     box.setAttribute('color', 'red')
+  //   })
+  // });
+
+
+</script>
+
+</html>
