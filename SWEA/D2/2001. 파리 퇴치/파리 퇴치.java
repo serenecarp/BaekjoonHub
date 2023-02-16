@@ -4,7 +4,6 @@ import java.util.Scanner;
 class Solution {
 	public static void main(String args[]) throws Exception {
 
-		
 		// 1. 파리 개수(2차원 배열)와 파리채 크기를 입력받는다.
 		// 2. 파리채 크기만큼 파리 배열을 적당히 덜 순회하면서,
 		// 3. 파리채 델타로 파리채 영역 내 파리 수를 구한다.
@@ -41,8 +40,9 @@ class Solution {
 				for (int j = 0; j < N - M+1; j++) {
 					int killable = 0;
 					// 파리채 델타를 배열 한개로 때우기
-					// 가로 방향은 M제곱을 M으로 나눈 나머지  (0 1 2 0 1 2 0 1 2 ..)
-					// 세로 방향은 M제곱을 M으로 나눈 몫 (0 0 0 1 1 1 2 2 2 ..)
+					// 0 ~ (M-1)로 수를 증가시키며
+					// 가로 방향은 그 수를 M으로 나눈 나머지  (0 1 2 0 1 2 0 1 2 ..)
+					// 세로 방향은 그 수를 M으로 나눈 몫 (0 0 0 1 1 1 2 2 2 ..)
 					for (int k = 0; k < M*M; k++) {
 						int newJ = j + flapper[k % M];
 						int newI = i + flapper[k / M];
