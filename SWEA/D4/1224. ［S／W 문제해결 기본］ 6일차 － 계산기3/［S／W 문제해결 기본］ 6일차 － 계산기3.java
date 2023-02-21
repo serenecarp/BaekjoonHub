@@ -21,27 +21,48 @@ public class Solution {
 			Queue<Character> postfix = new LinkedList<>();
 			Stack<Character> operator = new Stack<>();
 			Stack<Integer> operand = new Stack<>();
-
-			// infix를 postfix로
+			
+			// *************************************************
+			// 					infix를 postfix로
+			// *************************************************
+			
+			
 			for (int i = 0; i < infix.length; i++) {
+				// --------------- 1. 숫자가 올 경우 ----------------
 				// 원소가 (일의 자리) 숫자이면 그냥 postfix에 담는다.
 				if (infix[i] >= '0') {
 					postfix.add(infix[i]);
 				}
-				// 원소가 연산자이면 stack에 담는다.
+				
+				
+				
+				
+				// --------------- 2. 기호가 올 경우 ----------------
 				else {
+					// -------------- (2.1) 괄호가 올 경우
+					
+					// '('가 나오면 우선 넣어 두고 ')'를 기다린다.
 					if (infix[i] == '(') {
 						operator.push(infix[i]);
-					} else if (infix[i] == ')') {
+					}
+					// ')'가 나오면 앞의 '('가 나올 때까지 postfix에 다 집어 넣는다.
+					else if (infix[i] == ')') {
 						while (operator.peek() != '(') {
 							postfix.add(operator.peek());
 							operator.pop();
 						}
+						// 다 넣었으면 '('는 빼준다.
 						operator.pop();
-					} else {
+					}
+					
+					
+					
+					
+					// ----------------- (2.2) 연산자가 올 경우
+					else {
 						// 스택에 뭔가 있다면,
-						// 그리고 그 뭔가가 나보다 우선순위가 높다면
-						// 먼저 보내드린다.
+						// 그리고 그 뭔가가 나보다 우선순위가 높다면 먼저 보낸다.
+						// 우선순위: '*' > '+' > '('
 						while (!operator.isEmpty() && priority(operator.peek()) >= priority(infix[i])) {
 							postfix.add(operator.peek());
 							operator.pop();
@@ -52,6 +73,7 @@ public class Solution {
 				}
 			}
 
+			// ------------------ 3. 마무리 --------------------
 			// infix식을 다 돌고, 연산자 스택에 남은 애들은
 			// postfix에 다 들여보낸다.
 			while (!operator.isEmpty()) {
@@ -59,6 +81,9 @@ public class Solution {
 				operator.pop();
 			}
 
+			// ************************************************
+			// 						계	산
+			// ************************************************
 			// 연산자가 다 없어질 때까지 계산한다.
 			while (!postfix.isEmpty()) {
 //				System.out.println(postfix);
@@ -98,7 +123,10 @@ public class Solution {
 			return 1;
 		} else if (operator == '*') {
 			return 2;
-		} else if (operator == '(') {
+		}
+		// '('는 우선순위를 제일 낮게 해줘야
+		// 뒤의 연산자 애들이 얘를 무시하고 잘 진행할 수 있다.
+		else if (operator == '(') {
 			return 0;
 		} else
 			return 0;
