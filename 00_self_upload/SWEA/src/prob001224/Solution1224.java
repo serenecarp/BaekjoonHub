@@ -1,11 +1,11 @@
-package prob001223;
+package prob001224;
 
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 import java.util.Stack;
 
-class Solution1223 {
+public class Solution1224 {
 	public static void main(String args[]) throws Exception {
 		Scanner sc = new Scanner(System.in);
 		int T = 10;
@@ -22,28 +22,59 @@ class Solution1223 {
 			Queue<Character> postfix = new LinkedList<>();
 			Stack<Character> operator = new Stack<>();
 			Stack<Integer> operand = new Stack<>();
-
-			// infix를 postfix로
+			
+			// *************************************************
+			// 					infix를 postfix로
+			// *************************************************
+			
+			
 			for (int i = 0; i < infix.length; i++) {
+				// --------------- 1. 숫자가 올 경우 ----------------
 				// 원소가 (일의 자리) 숫자이면 그냥 postfix에 담는다.
 				if (infix[i] >= '0') {
 					postfix.add(infix[i]);
 				}
-				// 원소가 연산자이면 stack에 담는다.
+				
+				
+				
+				
+				// --------------- 2. 기호가 올 경우 ----------------
 				else {
-					// 스택에 뭔가 있다면,
-					// 그리고 그 뭔가가 나보다 우선순위가 높다면
-					// 먼저 보내드린다.
-					while (!operator.isEmpty() && priority(operator.peek()) >= priority(infix[i])) {
-						postfix.add(operator.peek());
+					// -------------- (2.1) 괄호가 올 경우
+					
+					// '('가 나오면 우선 넣어 두고 ')'를 기다린다.
+					if (infix[i] == '(') {
+						operator.push(infix[i]);
+					}
+					// ')'가 나오면 앞의 '('가 나올 때까지 postfix에 다 집어 넣는다.
+					else if (infix[i] == ')') {
+						while (operator.peek() != '(') {
+							postfix.add(operator.peek());
+							operator.pop();
+						}
+						// 다 넣었으면 '('는 빼준다.
 						operator.pop();
 					}
-					// 그런게 아니면 그냥 넣는다.
-					operator.push(infix[i]);
-
+					
+					
+					
+					
+					// ----------------- (2.2) 연산자가 올 경우
+					else {
+						// 스택에 뭔가 있다면,
+						// 그리고 그 뭔가가 나보다 우선순위가 높다면 먼저 보낸다.
+						// 우선순위: '*' > '+' > '('
+						while (!operator.isEmpty() && priority(operator.peek()) >= priority(infix[i])) {
+							postfix.add(operator.peek());
+							operator.pop();
+						}
+						// 그런게 아니면 그냥 넣는다.
+						operator.push(infix[i]);
+					}
 				}
 			}
 
+			// ------------------ 3. 마무리 --------------------
 			// infix식을 다 돌고, 연산자 스택에 남은 애들은
 			// postfix에 다 들여보낸다.
 			while (!operator.isEmpty()) {
@@ -51,6 +82,9 @@ class Solution1223 {
 				operator.pop();
 			}
 
+			// ************************************************
+			// 						계	산
+			// ************************************************
 			// 연산자가 다 없어질 때까지 계산한다.
 			while (!postfix.isEmpty()) {
 //				System.out.println(postfix);
@@ -61,7 +95,7 @@ class Solution1223 {
 				if (postfix.peek() >= '0') {
 					operand.push(postfix.poll() - '0');
 				}
-				// 
+				//
 				// 연산자라면 그 연산자로 제일 위의 피연산자를 계산한 뒤
 				// 나온 값을 push한다.
 				else if (postfix.peek() == '+') {
@@ -87,12 +121,15 @@ class Solution1223 {
 
 	static int priority(char operator) {
 		if (operator == '+') {
-			return 0;
-		} else if (operator == '*') {
 			return 1;
+		} else if (operator == '*') {
+			return 2;
 		}
-		// 빨간줄 해결용 리턴 (쓰이지 않는 리턴)
-		// 위에 else if를 그냥 else로 바꿔도 해결 가능.
-		return 0;
+		// '('는 우선순위를 제일 낮게 해줘야
+		// 뒤의 연산자 애들이 얘를 무시하고 잘 진행할 수 있다.
+		else if (operator == '(') {
+			return 0;
+		} else
+			return 0;
 	}
 }
