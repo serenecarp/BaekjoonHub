@@ -1,4 +1,6 @@
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -8,38 +10,45 @@ class Solution {
 		int T = 10;
 		// 테스트케이스
 		for (int test_case = 1; test_case <= T; test_case++) {
-			// 문자열 총 길이, 문자열 입력 받기
-			int lenStr = sc.nextInt();
-			char[] calString = new char[lenStr];
-			calString = sc.next().toCharArray();
-			// 숫자와 부호의 스택 각각 선언
-			Stack<Integer> num = new Stack<>();
-			Stack<Character> sign = new Stack<>();
-			// 스택에 하나씩 거꾸로 넣기
-			for (int i = calString.length - 1; i >= 0; i--) {
-				if (calString[i] == '+') {
-					sign.push(calString[i]);
-				} else {
-					num.push(calString[i] - '0');
+			// 수식 길이 입력.. -> toCharArray로 받아줘서 별 의미는 없음
+			int len = sc.nextInt();
+			char[] infix = sc.next().toCharArray();
+
+			Queue<Character> postfix = new LinkedList<>();
+			Stack<Character> operator = new Stack<>();
+			Stack<Integer> operand = new Stack<>();
+			for (int i = 0; i < infix.length; i++) {
+				if (infix[i] >= '0') {
+					postfix.add(infix[i]);
+				} else if (infix[i] == '+') {
+					if (operator.isEmpty()) {
+						operator.push(infix[i]);
+					} else {
+						postfix.add(operator.peek());
+						operator.pop();
+						operator.push(infix[i]);
+					}
 				}
 			}
-			
-			// 부호가 없어질 때까지 연산
-			while (!sign.empty()) {
-				int num1 = num.peek();
-				num.pop();
-				int num2 = num.peek();
-				num.pop();
-				int newNum;
-				// 혹 다른 부호가 있을까봐 조건문으로 달아봤음.
-				if (sign.peek() == '+') {
-					sign.pop();
-					newNum = num1 + num2;
-					num.push(newNum);
+			while (!operator.isEmpty()) {
+				postfix.add(operator.peek());
+				operator.pop();
+			}
+
+			while (!postfix.isEmpty()) {
+				if (postfix.peek() >= '0') {
+					operand.push(postfix.poll() - '0');
+				} else if (postfix.peek() == '+') {
+					postfix.poll();
+					int num1 = operand.peek();
+					operand.pop();
+					int num2 = operand.peek();
+					operand.pop();
+					operand.push(num1 + num2);
 				}
 			}
-			// 마지막으로 num스택에 남은 수가 결과값
-			System.out.printf("#%d %d\n", test_case, num.peek());
+
+			System.out.printf("#%d %d\n", test_case, operand.peek());
 		}
 	}
 }
