@@ -3,8 +3,6 @@ import java.util.Scanner;
 
 class Solution {
 	public static void main(String args[]) throws Exception {
-
-
 		Scanner sc = new Scanner(System.in);
 		int T;
 		T = sc.nextInt();
@@ -47,36 +45,28 @@ class Solution {
 			int[] totW = new int[N];
 			int[] totR = new int[N];
 			totW[0] = colorCount[0][0];
-			for (int i = 1; i < N - 2; i++) {
+			for (int i = 1; i < N - 1; i++) {
 				totW[i] = totW[i - 1] + colorCount[i][0];
 			}
 			totR[N - 1] = colorCount[N - 1][2];
-			for (int i = N - 2; i >= 2; i--) {
+			for (int i = N - 2; i >= 1; i--) {
 				totR[i] += totR[i + 1] + colorCount[i][2];
 			}
 
-
 			// i번째 한 줄을 b로 칠한다고 가정
-			// 초기값: 위 상태의 필요 w, b, r 수
-			// 변화: 그 위치에서 b줄의 두께를 늘림(~j)
+			// 초기값: b 없이 i번째 전까지 w로 칠하고, i번째부터 끝까지 r로 칠했을 때
+			// 변화: i에서 b줄의 두께를 1부터 끝-1까지 늘림(j)
 			// - 위 변화에 따라 늘어나는 b와 줄어드는 r을 계산 후 최솟값 갱신
 			int answer = Integer.MAX_VALUE;
 			int totColor = 0;
 			for (int i = 1; i < N - 1; i++) {
-				totColor = totW[i - 1] + colorCount[i][1] + totR[i + 1];
-				if (answer > totColor) {
-					answer = totColor;
-				}
-				if (i == N - 2)
-					break;
-				for (int j = i + 1; j < N - 1; j++) {
-
+				totColor = totW[i - 1] +totR[i];
+				for (int j = i; j < N - 1; j++) {
 					totColor += colorCount[j][1] - colorCount[j][2];
 					if (answer > totColor) {
 						answer = totColor;
 					}
 				}
-
 			}
 			// 최종 최솟값 출력
 			System.out.printf("#%d %d\n", test_case, answer);
