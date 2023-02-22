@@ -6,18 +6,22 @@ public class Main {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int disk = sc.nextInt();
-		int location = 1;
-		System.out.println(hanoi(disk, location));
+		int iter = 1;
+		for (int i = 0; i < disk; i++) {
+			iter *= 2;
+		}
+		System.out.println(--iter);;
+		hanoi(disk, 1, 3, 2);
 	}
 
-	static int hanoi(int disk, int location) {
-		int locA = (location + 1) % 3;
-		int locB = (location + 2) % 3;
+	static void hanoi(int disk, int location, int target, int rest) {
 		if (disk == 1) {
-			System.out.printf("%d %d\n", disk, 3);
-			return 1;
+			System.out.printf("%d %d\n", location, target);
+			return;
 		}
 
-		return hanoi(disk - 1, locA) + hanoi(disk - 1, locB);
+		hanoi(disk - 1, location, rest, target);
+		System.out.printf("%d %d\n", location, target);
+		hanoi(disk - 1, rest, target, location);
 	}
 }
