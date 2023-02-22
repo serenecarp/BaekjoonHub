@@ -63,7 +63,7 @@ class Solution {
 				}
 				bracket.push(rawBracket[i]);
 			}
-			if (isGood == 1)
+			if (bracket.isEmpty() && isGood == 1)
 				System.out.printf("#%d %d\n", test_case, isGood);
 			else
 				System.out.printf("#%d %d\n", test_case, isGood);
