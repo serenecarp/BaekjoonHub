@@ -12,7 +12,7 @@ class Solution4613 {
 			// 깃발 높이, 폭
 			int N = sc.nextInt();
 			int M = sc.nextInt();
-			
+
 			// 초기 색깔 입력
 			char[][] russianFlag = new char[N][M];
 			for (int i = 0; i < N; i++) {
@@ -61,7 +61,7 @@ class Solution4613 {
 			int answer = Integer.MAX_VALUE;
 			int totColor = 0;
 			for (int i = 1; i < N - 1; i++) {
-				totColor = totW[i - 1] +totR[i];
+				totColor = totW[i - 1] + totR[i];
 				for (int j = i; j < N - 1; j++) {
 					totColor += colorCount[j][1] - colorCount[j][2];
 					if (answer > totColor) {

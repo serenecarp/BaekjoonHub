@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4613. 러시아 국기 같은 깃발</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 10em;
+            margin-bottom: 10em;
+        }
+
+        section#1 {
+            display:flex;
+            flex-direction: column;
+        }
+
+        div.char-row {
+            display: flex;
+            flex-direction: row;
+        }
+        div.char-col {
+            border: 1px solid black;
+            border-collapse: collapse;
+            width: 4em;
+            height: 4em;
+        }
+        div.W {
+            background-color: #FCFFE7;
+        }
+        div.R {
+            background-color: #EB455F;
+        }
+        div.B {
+            background-color: #BAD7E9;
+        }
+    </style>
+    <!-- 빨 EB455F -->
+    <!-- 흰 FCFFE7 -->
+    <!-- 파 BAD7E9 -->
+    <!-- 진파 2B3467 -->
+</head>
+
+<body>
+    <!-- 한 줄 색칠 개수 & 누적 줄 색칠 개수-->
+    <section id="1">
+        <div class="char-row">
+            <div class="char-col W">W</div>
+            <div class="char-col R">R</div>
+            <div class="char-col W">W</div>
+            <div class="char-col R">R</div>
+            <div class="char-col W">W</div>
+        </div>
+        <div class="char-row">
+            <div class="char-col B">B</div>
+            <div class="char-col W">W</div>
+            <div class="char-col R">R</div>
+            <div class="char-col W">W</div>
+            <div class="char-col B">B</div>
+        </div>
+        <div class="char-row">
+            <div class="char-col W">W</div>
+            <div class="char-col R">R</div>
+            <div class="char-col W">W</div>
+            <div class="char-col R">R</div>
+            <div class="char-col W">W</div>
+        </div>
+        <div class="char-row">
+            <div class="char-col R">R</div>
+            <div class="char-col W">W</div>
+            <div class="char-col B">B</div>
+            <div class="char-col W">W</div>
+            <div class="char-col R">R</div>
+        </div>
+    </section>
+
+    <!-- 누적 줄 색칠 개수 -->
+    <section id="2">
+
+    </section>
+
+
+
+
+
+
+    <script>
+
+    </script>
+</body>
+
+</html>
