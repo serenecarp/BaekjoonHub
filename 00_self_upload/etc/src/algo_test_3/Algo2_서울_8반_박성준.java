@@ -1,3 +1,5 @@
+package algo_test_3;
+
 import java.util.Scanner;
 
 public class Algo2_서울_8반_박성준 {
