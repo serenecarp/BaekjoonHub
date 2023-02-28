@@ -1,6 +1,5 @@
 package prob001228;
 
-<<<<<<< HEAD
 import java.util.Scanner;
 import java.io.FileInputStream;
 
@@ -90,10 +89,3 @@ class Solution1228 {
 		}
 	}
 }
-=======
-public class Solution1228 {
-	public static void main(String[] args) {
-		
-	}
-}
->>>>>>> fe1e9ef48124f52b3910da9902bea5d338e900bf
