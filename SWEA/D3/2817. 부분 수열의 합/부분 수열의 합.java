@@ -28,12 +28,18 @@ public class Solution {
 				for (int j = 0; j < N; j++) {
 					if ((i & (1 << j)) != 0) {
 						mySum += seq[j];
+						
+						// 그 합이 목표합보다 커버리면 이미 글러버린 경우이므로 break
+						if(mySum > subSum) {
+							break;
+						}
 					}
 				}
 				// 그 합이 목표 합과 같으면 ok
 				if (mySum == subSum) {
 					count++;
 				}
+				
 			}
 			System.out.printf("#%d %d\n", testCase, count);
 		} // tc
