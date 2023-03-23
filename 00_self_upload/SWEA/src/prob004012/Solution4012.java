@@ -10,6 +10,7 @@ public class Solution4012 {
 	static int[] selected;
 
 	public static void main(String[] args) {
+
 		Scanner sc = new Scanner(System.in);
 		int T = sc.nextInt();
 		// 테스트케이스
@@ -25,8 +26,16 @@ public class Solution4012 {
 //			}
 			combination(0, 0);
 		}
+		// 0 1
+		// 0 2
+		// 0 3
+		// 1 2
+		// 1 3
+		// 2 3
 	}
-
+	// 4C2
+	// {가 나 다 라 마 바} <= N개
+	// {? , ? , ?} selected <= N/2개
 	static void combination(int selectdx, int ingredx) {
 		// base case
 		if (ingredx == N / 2) {
@@ -37,7 +46,13 @@ public class Solution4012 {
 		// recursion case
 		for (int i = ingredx; i <= N - (N / 2) + selectdx; i++) {
 			selected[selectdx] = i;
-			combination(selectdx + 1, ingredx + 1);
+			combination(i + 1, ingredx + 1);
 		}
 	}
 }
+
+
+
+
+
+
