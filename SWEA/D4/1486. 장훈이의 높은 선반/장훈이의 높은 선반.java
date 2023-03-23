@@ -37,6 +37,8 @@ public class Solution {
 					if (sumH >= minH) {
 						break;
 					}
+					// minH보다 작으면 갱신한다는 조건은 사실상
+					// 이미 위에서 break로 걸러줬으므로 없어도 될듯.
 					if (sumH >= goalH) {
 						minH = sumH;
 					}
