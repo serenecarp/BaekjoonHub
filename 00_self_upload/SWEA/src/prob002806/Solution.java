@@ -84,6 +84,7 @@ public class Solution {
 //			-> 이렇게 해버리면 재귀에서 돌아올 때 후처리가 되지 않으므로,
 //			아예 재귀 안에 해당하는 식을 넣어 주어야 돌아올 때 이전 상태로 되돌릴 수 있다.
 			System.out.println("현재 row: "+row);
+			System.out.println("여긴 안돼: " + toBinary(boardRow | powL | powR));
 			System.out.println(toBinary(boardRow));
 			positionQueen(boardRow | (1 << col), row+1, powL | (1 << (col + 1)), powR | (1 << (col - 1)));
 
