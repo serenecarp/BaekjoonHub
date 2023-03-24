@@ -3,7 +3,6 @@ package prob002806;
 import java.util.Scanner;
 
 public class Solution {
-	// boardRow : 체스판 한 줄 (N칸짜리 한줄)
 	static int N;
 	// N-Queen이 가능한 개수 count
 	static int count;
@@ -36,20 +35,18 @@ public class Solution {
 			count = 0;
 
 			positionQueen(0, 0, 0, 0);
-			System.out.println(count);
+			System.out.printf("#%d %d\n", testCase, count);
 
 		} // tc
 	}
 
 	static void positionQueen(int boardRow, int row, int powL, int powR) {
+
 		// BASE
 		// 모든 열을 다 따졌으며,
 		if (row == N) {
 			// boardRow가 111..11 로만 돼있다면 ok! count++
 			if (boardRow == (1 << N) - 1) {
-				System.out.println("***");
-				System.out.println(toBinary(boardRow) + "당첨");
-				System.out.println("***");
 				count++;
 			}
 			// 다른 경우를 생각하러 돌아가기
@@ -61,18 +58,21 @@ public class Solution {
 		// col = 현재 몇 번째 칸(column)
 		// 재귀의 depth = 현재 몇 번째 행인지 (row)
 		for (int col = 0; col < N; col++) {
-			// row가 한 칸 밑으로 가면 대각선으로 가던 영향력은
-			// 방향에 맞게 한 칸씩 더 간다.
-			powL = powL << 1;
-			powR = powR >>> 1;
-			// 이미 퀸을 둔 열(column)이거나 (=> 세로줄 고려)
-			// 퀸을 두면 안되는 위치라면 다음 위치를 고려하자. (=> 대각선 고려)
+
+//			// **************************************************
+//			// 이미 퀸을 둔 열(column)이거나 (=> 세로줄 고려)
+//			// 퀸을 두면 안되는 위치라면 다음 위치를 고려하자. (=> 대각선 고려)
+//			// row가 한 칸 밑으로 가면 대각선으로 가던 영향력은
+//			// 방향에 맞게 한 칸씩 더 간다.
+//			powL = powL << 1;
+//			powR = powR >>> 1;
+//			// **************************************************
 			int cannotPosition = boardRow | powL | powR;
 
 			if (((1 << col) & cannotPosition) != 0) {
 				continue;
 			}
-
+//			// **************************************************
 //			// 퀸을 두어도 괜찮은 위치라면 둬보자.
 //			boardRow = boardRow | (1 << col);
 //
@@ -81,12 +81,12 @@ public class Solution {
 //			powR = powR | (1 << (col - 1));
 //
 //			positionQueen(boardRow, row + 1, powL, powR);
-//			-> 이렇게 해버리면 재귀에서 돌아올 때 후처리가 되지 않으므로,
-//			아예 재귀 안에 해당하는 식을 넣어 주어야 돌아올 때 이전 상태로 되돌릴 수 있다.
-			System.out.println("현재 row: "+row);
-			System.out.println("여긴 안돼: " + toBinary(boardRow | powL | powR));
-			System.out.println(toBinary(boardRow));
-			positionQueen(boardRow | (1 << col), row+1, powL | (1 << (col + 1)), powR | (1 << (col - 1)));
+//			// **************************************************
+//			-> *** 안에 있는 코드로 하면, 재귀에서 돌아올 때 후처리가 되지 않으므로,
+//			아예 다음 재귀의 인자로 해당하는 식을 넣어 주어야 돌아올 때 이전 상태로 되돌릴 수 있다.
+			// 이를 적용시킨 식은 다음과 같다!!!
+
+			positionQueen(boardRow | (1 << col), row + 1, (powL | (1 << col)) << 1, (powR | (1 << col)) >>> 1);
 
 		}
 	}
