@@ -1,42 +1,46 @@
 package prob011650;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class Main {
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		int N = sc.nextInt();
-	}
-	/////////// 2안
-//		HashMap<Integer, List<Integer>> dot = new HashMap<>();
-//
-//		for (int i = 0; i < N; i++) {
-//			int x = sc.nextInt();
-//			if (!dot.containsKey(x)) {
-//				List<Integer> y = new ArrayList<>();
-//				y.add(sc.nextInt());
-//				dot.put(x, y);
-//			} else {
-//				dot.get(x).add(sc.nextInt());
-//			}
-//		}
-//
-//		
-//		List<Integer> dotX = new ArrayList<>(dot.keySet());
-//		Collections.sort(dotX);
-//		for (int i = 0; i < dotX.size(); i++) {
-//			Collections.sort(dot.get(dotX.get(i)));
-//			for (int j = 0; j < dot.get(dotX.get(i)).size(); j++) {
-//				System.out.printf("%d %d\n", dotX.get(i), dot.get(dotX.get(i)).get(j));
-//			}
-//		}
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		int N = Integer.parseInt(st.nextToken());
 
-	/////////// 1안
+		/////////// 2안
+		HashMap<Integer, List<Integer>> dot = new HashMap<>();
+
+		for (int i = 0; i < N; i++) {
+			st = new StringTokenizer(br.readLine());
+			int x = Integer.parseInt(st.nextToken());
+			int tmp = Integer.parseInt(st.nextToken());
+			if (!dot.containsKey(x)) {
+				List<Integer> y = new ArrayList<>();
+				y.add(tmp);
+				dot.put(x, y);
+			} else {
+				dot.get(x).add(tmp);
+			}
+		}
+
+		List<Integer> dotX = new ArrayList<>(dot.keySet());
+		Collections.sort(dotX);
+		for (int i = 0; i < dotX.size(); i++) {
+			Collections.sort(dot.get(dotX.get(i)));
+			for (int j = 0; j < dot.get(dotX.get(i)).size(); j++) {
+				System.out.printf("%d %d\n", dotX.get(i), dot.get(dotX.get(i)).get(j));
+			}
+		}
+
+		/////////// 1안
 //		int[][] dot = new int[N][2];
 //		for (int i = 0; i < N; i++) {
 //			for (int j = 0; j < 2; j++) {
@@ -65,4 +69,5 @@ public class Main {
 //		dot[a] = dot[b];
 //		dot[b] = temp;
 //	}
+	}
 }
