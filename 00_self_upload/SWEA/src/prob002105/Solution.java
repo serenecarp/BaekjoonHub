@@ -63,10 +63,16 @@ public class Solution {
 
 			System.out.println("돌아요 " + cafe[ni][nj] + "[" + ni + ", " + nj + "]");
 
+			count++;
+			// 다음 칸으로 이동
+			ni += di[dir];
+			nj += dj[dir];
+
 			// 처음으로 돌아왔으면 종료
 			if (ni == i && nj == j) {
 				break;
 			}
+
 			// 다음칸이 범위 밖이거나, 중복된 디저트일 경우 방향전환
 			if (ni >= N || nj >= N || ni < 0 || ni < 0 || dessert[cafe[ni][nj]] != 0) {
 				// 한 칸도 안갔는데 count 0이면 변이 없다는 것이므로 break;
@@ -80,14 +86,11 @@ public class Solution {
 				dir++;
 				count = 0;
 			}
-			count++;
-			// 다음 칸으로 이동
-			ni += di[dir];
-			nj += dj[dir];
-			
+
 			kindOfD++;
 			dessert[cafe[ni][nj]]++;
 			visited[ni][nj] = true;
+
 		}
 
 		if (kindOfD > maxD) {
