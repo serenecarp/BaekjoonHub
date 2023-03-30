@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Scanner;
 
-public class Solution {
+public class Solution_Kruskal {
 	static int N;
 	static int[][] island;
 	static double[][] tunnel;
