@@ -1,52 +1,42 @@
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Solution {
+//	static final int tas = 0, cal = 1;
+	static int N, L;
+	static int[][] info, dp;
+
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int T = sc.nextInt();
 		// 테스트케이스
 		for (int testCase = 1; testCase <= T; testCase++) {
-			// 재료 개수, 제한 칼로리
-			int N = sc.nextInt();
-			int limCal = sc.nextInt();
-
-			// 햄버거 재료 정보를 담은 배열, [0]에 맛, [1]에 칼로리
-			int[][] ingred = new int[N][2];
-			int tas = 0;
-			int cal = 1;
-			for (int i = 0; i < N; i++) {
-				ingred[i][tas] = sc.nextInt();
-				ingred[i][cal] = sc.nextInt();
-			}
-			// 맛점수의 최댓값
-			int maxTas = Integer.MIN_VALUE;
-
-			// 모든 경우의 수(부분집합의 수)를 고려하기
-			for (int i = 0; i < (1 << N); i++) {
-				int myTas = 0;
-				int myCal = 0;
-				boolean ok = true;
-				for (int j = 0; j < N; j++) {
-					// 해당 경우의 수에서 맛의 총합과 칼로리의 총합을 구한다.
-					// 칼로리의 총합이 넘어갈 경우 break, 해당 경우는 따져주지 않는다.
-					// 맛의 총합이 maxTas보다 크면 갱신한다.
-					if ((i & (1 << j)) != 0) {
-						myTas += ingred[j][tas];
-						myCal += ingred[j][cal];
-					}
-
-					if (myCal > limCal) {
-						ok = false;
-						break;
-					}
-				}
-
-				if (ok && maxTas < myTas) {
-					maxTas = myTas;
+			N = sc.nextInt();
+			L = sc.nextInt();
+//			info = new int[N + 1][2];
+			dp = new int[N + 1][L + 1];
+			for (int i = 1; i <= N; i++) {
+				int tas = sc.nextInt();
+				int cal = sc.nextInt();
+				// 칼로리(j)에서의 기존 최적해: dp[i-1][j]
+				// i가 커지면서 추가된 재료로 dp[i-1][j-cal] + tas값이 최적이 될수도 아닐수도
+				for (int j = 0; j <= L; j++) {
+					if (cal > j)
+						dp[i][j] = dp[i - 1][j];
+					else
+						dp[i][j] = Math.max(dp[i - 1][j], dp[i - 1][j - cal] + tas);
 				}
 			}
-			System.out.printf("#%d %d\n", testCase, maxTas);
+			int answer = 0;
+			// 어쩔수없이 최대치 칼로리를 딱 못채웠을 수도 있어서 거꾸로 짚어가며 최댓값 찾아옴
+			for (int i = L; i >= 0; i--) {
+				if(dp[N][i] != 0) {
+					answer = dp[N][i];
+					break;
+				}
+			}
+			System.out.printf("#%d %d\n", testCase, answer);
 
 		} // tc
 	}
