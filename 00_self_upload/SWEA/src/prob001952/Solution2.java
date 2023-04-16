@@ -1,7 +1,8 @@
+package prob001952;
 
 import java.util.Scanner;
 
-public class Solution {
+public class Solution2 {
 	// day, month, quarter, year
 	static final int d = 0, m = 1, q = 2, y = 3;
 	static int[] ticket, plan;

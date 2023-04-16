@@ -1,8 +1,9 @@
+package prob005215;
 
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Solution {
+public class Solution2 {
 //	static final int tas = 0, cal = 1;
 	static int N, L;
 	static int[][] info, dp;
